@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TopController;
+use App\Http\Controllers\WorkoutSettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +20,9 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/top', function () {
-    return view('top');
-})->middleware(['auth', 'verified'])->name('top');
+Route::get('/top', [TopController::class, 'index'])->middleware(['auth', 'verified'])->name('top');
+Route::get('/workout_setting', [WorkoutSettingController::class, 'index'])->middleware(['auth', 'verified'])->name('workout_setting');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

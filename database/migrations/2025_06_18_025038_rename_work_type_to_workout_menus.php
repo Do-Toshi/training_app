@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('work_type', function (Blueprint $table) {
+        Schema::create('workout_menus', function (Blueprint $table) {
             $table->id();
-            $table->string('work'); // exercise name
+            $table->string('name'); // メニュー名
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('work_type');
+        Schema::dropIfExists('workout_menus');
     }
 };
