@@ -21,7 +21,7 @@
                 <input type="number" name="rest_time_minutes" id="rest_time_minutes" min="0" required>
                 <label for="rest_time_minutes">分</label>
                 
-                <input type="number" name="rest_time_seconds" id="rest_time_seconds" min="0" max="59" required>
+                <input type="number" name="rest_time_minutes" id="rest_time_seconds" min="0" max="59" required>
                 <label for="rest_time_seconds">秒</label>
             </div>
             

@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\WorkoutSettingController;
+use App\Http\Controllers\WorkoutExecutionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::get('/', function () {
 
 Route::get('/top', [TopController::class, 'index'])->middleware(['auth', 'verified'])->name('top');
 Route::get('/workout_setting', [WorkoutSettingController::class, 'index'])->middleware(['auth', 'verified'])->name('workout_setting');
+Route::post('/workout_execution',[WorkoutExecutionController::class,'index'])->middleware(['auth', 'verified'])->name('workout_execution');
+Route::get('/workout_result',[WorkoutExecutionController::class,'result'])->name('workout_result');
 
 
 Route::middleware('auth')->group(function () {
