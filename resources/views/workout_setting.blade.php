@@ -4,24 +4,24 @@
     <div>
         <h2>運動設定</h2>
 
-        <form method="POST" action="#"> {{-- route('workout_execution') --}}
+        <form method="POST" action="{{ route('workout_execution') }}"> {{-- route('workout_execution') --}}
             @csrf
 
             <div>
-                <h3>運動時間</h3>
-                <input type="number" name="exercise_time_minutes" id="exercise_time_minutes" min="0" required>
+                <h3>筋トレタイム</h3>
+                <input type="number" name="exercise_time_minutes" id="exercise_time_minutes" min="0" value="0" required>
                 <label for="exercise_time_minutes">分</label>
                 
-                <input type="number" name="exercise_time_seconds" id="exercise_time_seconds" min="0" max="59" required>
+                <input type="number" name="exercise_time_seconds" id="exercise_time_seconds" min="0" max="59" value="0" required>
                 <label for="exercise_time_seconds">秒</label>
             </div>
             
             <div>
-                <h3>休憩時間</h3>
-                <input type="number" name="rest_time_minutes" id="rest_time_minutes" min="0" required>
+                <h3>休憩タイム</h3>
+                <input type="number" name="rest_time_minutes" id="rest_time_minutes" min="0" value="0" required>
                 <label for="rest_time_minutes">分</label>
                 
-                <input type="number" name="rest_time_minutes" id="rest_time_seconds" min="0" max="59" required>
+                <input type="number" name="rest_time_seconds" id="rest_time_seconds" min="0" max="59" value="0" required>
                 <label for="rest_time_seconds">秒</label>
             </div>
             
@@ -37,7 +37,7 @@
             </div>
             
             <button type="submit">トレーニングを開始</button>
-            <button onclick="window.history.back();">戻る</button>
+            <button type="button" onclick="location.href='/top'">戻る</button>
         </form>
     </div>
 @endsection
