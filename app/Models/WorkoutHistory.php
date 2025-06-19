@@ -14,6 +14,7 @@ class WorkoutHistory extends Model
     protected $fillable = [
         'user_id',
         'execution_date',
-        'total_time',
+        'workout_menu_id',
+        'workout_time',
     ];
 }

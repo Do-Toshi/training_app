@@ -25,7 +25,7 @@ class TopController extends Controller
             ->where('execution_date', $today)
             ->first();
             
-
+        // TODO:
         if ($todayWorkout) {
             // 既に今日のデータが存在する場合、その時間を取得
             $totalTime = $todayWorkout->total_time;
