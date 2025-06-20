@@ -17,4 +17,9 @@ class WorkoutHistory extends Model
         'workout_menu_id',
         'workout_time',
     ];
+
+    public function workoutMenu()
+    {
+        return $this->belongsTo(WorkoutMenu::class);
+    }
 }

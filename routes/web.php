@@ -6,6 +6,7 @@ use App\Http\Controllers\TopController;
 use App\Http\Controllers\WorkoutSettingController;
 use App\Http\Controllers\WorkoutExecutionController;
 use App\Http\Controllers\WorkoutResultController;
+use App\Http\Controllers\WorkoutHistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ Route::get('/top', [TopController::class, 'index'])->middleware(['auth', 'verifi
 Route::get('/workout_setting', [WorkoutSettingController::class, 'index'])->middleware(['auth', 'verified'])->name('workout_setting');
 Route::post('/workout_execution',[WorkoutExecutionController::class,'index'])->middleware(['auth', 'verified'])->name('workout_execution');
 Route::post('/workout_result', [WorkoutResultController::class,'result'])->name('workout_result');
+Route::get('/workout_history',[WorkoutHistoryController::class,'index'])->name('workout_history');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
