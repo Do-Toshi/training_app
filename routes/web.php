@@ -20,8 +20,14 @@ use App\Http\Controllers\WorkoutHistoryController;
 */
 
 Route::get('/', function () {
+    if (auth()->check()) {
+        // ログインしているユーザーの場合
+        return redirect()->route('top');
+    }
+    
+    // ログインしていない場合
     return view('index');
-});
+})->name('index');
 
 Route::get('/top', [TopController::class, 'index'])->middleware(['auth', 'verified'])->name('top');
 Route::get('/workout_setting', [WorkoutSettingController::class, 'index'])->middleware(['auth', 'verified'])->name('workout_setting');
