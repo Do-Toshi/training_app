@@ -7,6 +7,7 @@ use App\Http\Controllers\WorkoutSettingController;
 use App\Http\Controllers\WorkoutExecutionController;
 use App\Http\Controllers\WorkoutResultController;
 use App\Http\Controllers\WorkoutHistoryController;
+use App\Http\Controllers\WorkoutMenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::get('/workout_setting', [WorkoutSettingController::class, 'index'])->midd
 Route::post('/workout_execution',[WorkoutExecutionController::class,'index'])->middleware(['auth', 'verified'])->name('workout_execution');
 Route::post('/workout_result', [WorkoutResultController::class,'result'])->name('workout_result');
 Route::get('/workout_history',[WorkoutHistoryController::class,'index'])->name('workout_history');
+Route::get('/create_workout_menu', [WorkoutMenuController::class, 'create'])->name('create_workout_menu');
+Route::post('/create_workout_menu', [WorkoutMenuController::class, 'store'])->name('create_workout_menu');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
