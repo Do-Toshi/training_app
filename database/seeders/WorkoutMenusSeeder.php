@@ -14,7 +14,7 @@ class WorkoutTypeSeeder extends Seeder
      */
     public function run()
     {
-        $workoutTypes = [
+        $workoutMenus = [
             ['name' => '腕立て'],
             ['name' => 'スクワット'],
             ['name' => '懸垂'],
@@ -23,6 +23,6 @@ class WorkoutTypeSeeder extends Seeder
             ['name' => 'ベンチプレス'],
         ];
 
-        DB::table('workout_type')->insert($workoutTypes);
+        DB::table('workout_menus')->insert($workoutMenus);
     }
 }
