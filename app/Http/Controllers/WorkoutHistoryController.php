@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\WorkoutHistory;
 use App\Models\WorkoutMenu;
+use Illuminate\Support\Facades\DB;
 
 class WorkoutHistoryController extends Controller
 {
@@ -12,24 +13,29 @@ class WorkoutHistoryController extends Controller
     {
         $userId = auth()->id();
 
-        // ユーザーの筋トレ履歴を日付毎に集計
-        $histories = WorkoutHistory::where('user_id',$userId)
-            ->selectRaw('execution_date, SUM(workout_time) as total_time')
+        // ユーザーの筋トレ履歴を日付毎に集計し、実施したメニュー名を取得
+        $histories = WorkoutHistory::select('execution_date', DB::raw('SUM(workout_time) as total_time'))
+            ->with(['workoutMenu' => function ($query) {
+                $query->select('id', 'name');
+            }])
+            ->where('user_id', $userId)
             ->groupBy('execution_date')
-            ->orderBy('execution_date','desc')
-            ->with('workoutMenu')
+            ->orderBy('execution_date', 'desc')
             ->get();
 
-        // 各日付毎の実施したワークアウトの名前を取得
-        foreach ($histories as $history) {
-            $history->workout_menus = WorkoutHistory::where('user_id',$userId)
-                ->where('execution_date',$history->execution_date)
+        // 実施したワークアウトの名前を取得
+        $histories->transform(function ($history) use ($userId) {
+            $workoutMenus = WorkoutHistory::where('user_id', $userId)
+                ->where('execution_date', $history->execution_date)
                 ->with('workoutMenu')
                 ->get()
                 ->pluck('workoutMenu.name')
-                ->implode(',');
-        }
+                ->implode(', ');
 
-        return view('workout_history',compact('histories'));
+            $history->workout_menus = $workoutMenus;
+            return $history;
+        });
+
+        return view('workout_history', compact('histories'));
     }
 }
