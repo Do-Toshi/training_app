@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\WorkoutHistory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class TopController extends Controller
 {
@@ -33,8 +32,6 @@ class TopController extends Controller
 
         // フォーマットして表示
         $formattedTime = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
-        
-        Log::debug($formattedTime);
 
         return view('top', compact('formattedTime'));
     }
